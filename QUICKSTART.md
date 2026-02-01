@@ -2,10 +2,12 @@
 
 ## 🚀 Get Running in 5 Minutes
 
-### Step 1: Install Dependencies (2 minutes)
+### Step 1: Clone & Install (2 minutes)
 
 ```bash
-cd /Users/junyi.yao/Desktop/Xai
+# Clone from GitHub
+git clone https://github.com/Kylinny/agentic-research-workflow.git
+cd agentic-research-workflow
 
 # Create virtual environment
 python3 -m venv venv

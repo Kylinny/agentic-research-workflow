@@ -1,6 +1,12 @@
 # Agentic Research Workflow with Grok
 
+[![GitHub](https://img.shields.io/badge/GitHub-Kylinny%2Fagentic--research--workflow-blue?logo=github)](https://github.com/Kylinny/agentic-research-workflow)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://www.python.org/)
+[![Grok](https://img.shields.io/badge/Grok-4--latest-purple)](https://x.ai/)
+
 A sophisticated autonomous multi-step agentic workflow system using Grok as the central reasoner for complex research on simulated X data and research papers.
+
+**🔗 GitHub Repository**: https://github.com/Kylinny/agentic-research-workflow
 
 ## Overview
 
@@ -62,6 +68,10 @@ docker-compose up --build
 ### Local Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/Kylinny/agentic-research-workflow.git
+cd agentic-research-workflow
+
 # Create virtual environment
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate

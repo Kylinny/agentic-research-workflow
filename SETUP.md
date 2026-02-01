@@ -6,12 +6,15 @@
 
 - Python 3.10 or higher
 - pip package manager
+- Git
 - (Optional) Docker and Docker Compose
 
-### 2. Installation
+### 2. Clone from GitHub
 
 ```bash
-cd /Users/junyi.yao/Desktop/Xai
+# Clone the repository
+git clone https://github.com/Kylinny/agentic-research-workflow.git
+cd agentic-research-workflow
 
 # Create virtual environment
 python3 -m venv venv
