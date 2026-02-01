@@ -144,38 +144,86 @@ def generate_thread_continuation(topic: str, part: int) -> str:
     return random.choice(templates)
 
 def generate_reply_content(topic: str, original_sentiment: str) -> str:
-    """Generate reply content"""
+    """Generate realistic reply content with substance"""
+    # Topic-specific responses with actual content
+    topic_responses = {
+        "artificial intelligence": [
+            f"The potential of {topic} for healthcare is incredible - early diagnosis could save millions of lives.",
+            f"But we need to address the bias issues in {topic} systems before widespread deployment.",
+            f"Love how {topic} is accelerating drug discovery. Recent examples show 10x speedup.",
+            f"Concerned about job displacement from {topic}. We need robust retraining programs.",
+            f"The energy consumption of large {topic} models is unsustainable. Need more efficient architectures.",
+        ],
+        "machine learning": [
+            f"Transfer learning has been a game-changer for {topic} applications with limited data.",
+            f"The reproducibility crisis in {topic} research needs urgent attention.",
+            f"Interesting how {topic} is now being applied to climate modeling with promising results.",
+            f"Model interpretability remains the biggest challenge for {topic} in critical applications.",
+            f"The democratization of {topic} tools has been amazing - anyone can build now.",
+        ],
+        "climate change": [
+            f"The latest IPCC report on {topic} is sobering. We're running out of time.",
+            f"Tech solutions for {topic} are important but we can't ignore systemic policy changes.",
+            f"Seeing more extreme weather events - {topic} impacts are already here.",
+            f"The economic cost of inaction on {topic} far exceeds mitigation costs.",
+            f"Carbon capture technology is promising but needs massive scale-up to combat {topic}.",
+        ],
+        "quantum computing": [
+            f"IBM's recent advances in {topic} error correction are groundbreaking.",
+            f"Still skeptical about {topic} timelines - we're decades from practical applications.",
+            f"The cryptography implications of {topic} are both exciting and concerning.",
+            f"Drug discovery could be revolutionized by {topic} - molecular simulation at scale.",
+            f"Investment in {topic} startups has exploded - bubble or justified?",
+        ],
+        "cybersecurity": [
+            f"The supply chain attacks we're seeing highlight critical {topic} vulnerabilities.",
+            f"Zero-trust architecture is becoming essential for modern {topic}.",
+            f"AI-powered {topic} threats are evolving faster than our defenses.",
+            f"Ransomware is now a nation-state level problem beyond traditional {topic}.",
+            f"The talent shortage in {topic} is getting worse - we need more training programs.",
+        ]
+    }
+    
+    # Default substantive templates that work for any topic
     agree_templates = [
-        "Completely agree! This is huge for the field.",
-        "Great analysis! Would add that...",
-        "Yes! Been saying this for months.",
-        "Brilliant thread. Sharing with my team.",
+        f"Completely agree! {topic.title()} is transforming the field in unexpected ways.",
+        f"Great analysis! Would add that recent developments in {topic} support this view.",
+        f"Yes! The scalability of {topic} approaches has improved dramatically.",
+        f"Brilliant thread. The economic implications of {topic} are massive.",
+        f"This aligns with what we're seeing in {topic} deployments across industries.",
     ]
     
     disagree_templates = [
-        "Have to disagree here. The data actually shows...",
-        "This overlooks key factors like...",
-        "Citation needed. Source?",
-        "Respectfully, this interpretation is problematic because...",
+        f"Have to disagree. Recent studies on {topic} show different outcomes.",
+        f"This overlooks regulatory challenges that {topic} implementations face.",
+        f"The timeline seems optimistic given current {topic} limitations.",
+        f"Respectfully, this interpretation of {topic} misses key ethical considerations.",
+        f"Data quality issues in {topic} research make these claims premature.",
     ]
     
     neutral_templates = [
-        "Interesting perspective. Has anyone looked at...?",
-        "Can you elaborate on the methodology?",
-        "What about the work by [other researchers]?",
-        "Would love to see this tested in different contexts.",
+        f"Interesting perspective on {topic}. What about the scalability challenges?",
+        f"Can you elaborate on how this applies to {topic} in developing markets?",
+        f"The long-term sustainability of {topic} approaches needs more study.",
+        f"Would love to see comparative analysis with alternative {topic} methods.",
+        f"How does this {topic} approach handle edge cases and failure modes?",
     ]
     
-    if original_sentiment in ["positive", "neutral"]:
-        if random.random() < 0.7:
-            return random.choice(agree_templates)
-        else:
-            return random.choice(disagree_templates)
+    # Use topic-specific if available, otherwise use enhanced generic
+    if topic in topic_responses:
+        all_responses = topic_responses[topic] + agree_templates + disagree_templates + neutral_templates
+        return random.choice(all_responses)
     else:
-        if random.random() < 0.5:
-            return random.choice(disagree_templates)
+        if original_sentiment in ["positive", "neutral"]:
+            if random.random() < 0.7:
+                return random.choice(agree_templates)
+            else:
+                return random.choice(disagree_templates)
         else:
-            return random.choice(neutral_templates)
+            if random.random() < 0.5:
+                return random.choice(disagree_templates)
+            else:
+                return random.choice(neutral_templates)
 
 def generate_research_papers(num_papers: int = 200) -> List[Dict]:
     """Generate realistic research paper metadata and abstracts"""

@@ -100,11 +100,17 @@ class SentimentAnalysisTool:
         
         sentiments = []
         for post in posts:
-            content = post.get("content", "")
+            # Handle both "text" and "content" fields
+            content = post.get("text", post.get("content", ""))
+            if not content:
+                continue  # Skip empty posts
             sentiment = self.analyze(content)
-            sentiment["post_id"] = post.get("id")
-            sentiment["timestamp"] = post.get("timestamp")
+            sentiment["post_id"] = post.get("id", post.get("post_id"))
+            sentiment["timestamp"] = post.get("timestamp", post.get("created_at"))
             sentiments.append(sentiment)
+        
+        if not sentiments:
+            return {"error": "No valid posts to analyze"}
         
         # Calculate overall thread sentiment
         avg_score = sum(s["score"] for s in sentiments) / len(sentiments)
@@ -141,8 +147,13 @@ class SentimentAnalysisTool:
         Returns:
             Dict with conversation sentiment analysis
         """
-        main_sentiment = self.analyze(main_post.get("content", ""))
-        reply_sentiments = [self.analyze(r.get("content", "")) for r in replies]
+        # Handle both "text" and "content" fields
+        main_text = main_post.get("text", main_post.get("content", ""))
+        main_sentiment = self.analyze(main_text)
+        reply_sentiments = [
+            self.analyze(r.get("text", r.get("content", ""))) 
+            for r in replies
+        ]
         
         # Classify replies as agreeing or disagreeing
         agreement = []
@@ -187,7 +198,17 @@ class SentimentAnalysisTool:
         if not posts:
             return {"error": "No posts provided"}
         
-        sentiments = self.analyze_batch([p.get("content", "") for p in posts])
+        # Handle both "text" and "content" fields, filter out empty
+        texts = [
+            p.get("text", p.get("content", "")) 
+            for p in posts 
+            if p.get("text") or p.get("content")
+        ]
+        
+        if not texts:
+            return {"error": "No valid text content in posts"}
+        
+        sentiments = self.analyze_batch(texts)
         
         # Overall statistics
         stats = {
