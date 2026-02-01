@@ -241,8 +241,8 @@ docker run \
 **Solution**:
 ```bash
 # Ensure you're in project root and venv is activated
-pwd  # Should show /Users/junyi.yao/Desktop/Xai
-which python  # Should show .../Xai/venv/bin/python
+pwd  # Should show .../agentic-research-workflow
+which python  # Should show .../agentic-research-workflow/venv/bin/python
 
 # Add project to PYTHONPATH if needed
 export PYTHONPATH="${PYTHONPATH}:$(pwd)"

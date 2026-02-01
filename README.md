@@ -54,8 +54,9 @@ This system implements an advanced agentic workflow that:
 ### Using Docker (Recommended)
 
 ```bash
-# Clone and navigate to the project
-cd /Users/junyi.yao/Desktop/Xai
+# Clone the repository
+git clone https://github.com/Kylinny/agentic-research-workflow.git
+cd agentic-research-workflow
 
 # Set up your API key
 cp .env.example .env

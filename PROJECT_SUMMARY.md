@@ -80,8 +80,9 @@ Xai/
 ### Quick Start (5 minutes)
 
 ```bash
-# 1. Install dependencies
-cd /Users/junyi.yao/Desktop/Xai
+# 1. Clone and install dependencies
+git clone https://github.com/Kylinny/agentic-research-workflow.git
+cd agentic-research-workflow
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
