@@ -221,13 +221,12 @@ The system tracks:
 
 ## Troubleshooting
 
-See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues and solutions.
+See [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common issues and solutions.
 
 ## Documentation
 
 - [Technical Documentation](docs/TECHNICAL.md) - Architecture and design decisions
-- [API Documentation](docs/API.md) - Grok integration details
-- [Dataset Documentation](docs/DATASETS.md) - Mock data specifications
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) - Common issues and solutions
 
 ## License
 
