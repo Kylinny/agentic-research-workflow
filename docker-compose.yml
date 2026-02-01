@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  research-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agentic-research-workflow:latest
+    container_name: research-agent
+    environment:
+      - XAI_API_KEY=${XAI_API_KEY}
+      - XAI_BASE_URL=${XAI_BASE_URL:-https://api.x.ai/v1}
+      - DEFAULT_GROK_MODEL=${DEFAULT_GROK_MODEL:-grok-beta}
+      - MAX_ITERATIONS=${MAX_ITERATIONS:-10}
+    volumes:
+      - ./data:/app/data:rw
+      - ./results:/app/results:rw
+      - ./logs:/app/logs:rw
+    command: python main.py --interactive
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  # Service for running benchmarks
+  benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agentic-research-workflow:latest
+    container_name: benchmark-runner
+    environment:
+      - XAI_API_KEY=${XAI_API_KEY}
+      - XAI_BASE_URL=${XAI_BASE_URL:-https://api.x.ai/v1}
+    volumes:
+      - ./data:/app/data:ro
+      - ./results:/app/results:rw
+      - ./evaluation:/app/evaluation:ro
+    command: python evaluation/run_benchmark.py --max-queries 10
+    profiles:
+      - benchmark
+
+  # Service for generating datasets
+  dataset-generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agentic-research-workflow:latest
+    container_name: dataset-generator
+    volumes:
+      - ./data:/app/data:rw
+      - ./scripts:/app/scripts:ro
+    command: python scripts/generate_datasets.py
+    profiles:
+      - setup
+
+volumes:
+  data:
+  results:
+  logs:
+

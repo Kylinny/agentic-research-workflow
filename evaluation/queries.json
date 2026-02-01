@@ -1,0 +1,285 @@
+{
+  "queries": [
+    {
+      "id": 1,
+      "query": "What are the main concerns about AI safety discussed on X? Identify key themes and sentiment trends.",
+      "category": "x_sentiment_analysis",
+      "complexity": "medium",
+      "expected_tools": ["x_search", "sentiment_analysis", "hybrid_retrieval"]
+    },
+    {
+      "id": 2,
+      "query": "Compare methodologies used in quantum computing research papers from 2020-2025. What are the key innovations?",
+      "category": "paper_comparison",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "hybrid_retrieval"]
+    },
+    {
+      "id": 3,
+      "query": "Find the most influential papers on machine learning published in the last 5 years based on citation networks.",
+      "category": "citation_analysis",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 4,
+      "query": "What are users saying about climate change? Track sentiment evolution in discussion threads.",
+      "category": "x_thread_analysis",
+      "complexity": "medium",
+      "expected_tools": ["x_search", "sentiment_analysis", "thread_analyzer"]
+    },
+    {
+      "id": 5,
+      "query": "Identify key influencers discussing biotechnology on X and analyze their viewpoints.",
+      "category": "x_influencer_analysis",
+      "complexity": "medium",
+      "expected_tools": ["x_search", "sentiment_analysis"]
+    },
+    {
+      "id": 6,
+      "query": "How does public discourse on X about renewable energy align with academic research findings?",
+      "category": "cross_domain",
+      "complexity": "high",
+      "expected_tools": ["x_search", "paper_search", "hybrid_retrieval", "sentiment_analysis"]
+    },
+    {
+      "id": 7,
+      "query": "What are the common citations across papers on neural networks? Build a citation graph.",
+      "category": "citation_network",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 8,
+      "query": "Analyze the sentiment polarization in discussions about cybersecurity on X.",
+      "category": "x_sentiment_analysis",
+      "complexity": "medium",
+      "expected_tools": ["x_search", "sentiment_analysis"]
+    },
+    {
+      "id": 9,
+      "query": "What are the latest research trends in neuroscience? Identify top venues and emerging topics.",
+      "category": "research_trends",
+      "complexity": "medium",
+      "expected_tools": ["paper_search", "hybrid_retrieval"]
+    },
+    {
+      "id": 10,
+      "query": "Find papers that bridge artificial intelligence and biotechnology. What interdisciplinary approaches are being used?",
+      "category": "interdisciplinary",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "hybrid_retrieval", "citation_tracker"]
+    },
+    {
+      "id": 11,
+      "query": "What controversies exist around autonomous vehicles based on X discussions? Identify opposing viewpoints.",
+      "category": "x_controversy_analysis",
+      "complexity": "high",
+      "expected_tools": ["x_search", "sentiment_analysis", "thread_analyzer"]
+    },
+    {
+      "id": 12,
+      "query": "Trace the citation chain between two influential papers on deep learning published 5 years apart.",
+      "category": "citation_chain",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 13,
+      "query": "What sarcastic or ironic comments are being made about blockchain technology on X?",
+      "category": "x_sarcasm_detection",
+      "complexity": "high",
+      "expected_tools": ["x_search", "sentiment_analysis"]
+    },
+    {
+      "id": 14,
+      "query": "Compare the impact metrics of papers on gene therapy vs synthetic biology.",
+      "category": "research_comparison",
+      "complexity": "medium",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 15,
+      "query": "Who are the most cited authors in space exploration research? What are their key contributions?",
+      "category": "author_analysis",
+      "complexity": "medium",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 16,
+      "query": "Analyze how sentiment about fusion energy has changed over time on X.",
+      "category": "x_temporal_analysis",
+      "complexity": "high",
+      "expected_tools": ["x_search", "sentiment_analysis"]
+    },
+    {
+      "id": 17,
+      "query": "What are the methodological limitations discussed in brain-computer interface research papers?",
+      "category": "limitation_analysis",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "hybrid_retrieval"]
+    },
+    {
+      "id": 18,
+      "query": "Find discussions on X that contradict mainstream academic research on any topic.",
+      "category": "cross_domain_conflict",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "paper_search", "hybrid_retrieval", "sentiment_analysis"]
+    },
+    {
+      "id": 19,
+      "query": "What are the second-order citation impacts of the most influential AI safety papers?",
+      "category": "advanced_citation",
+      "complexity": "very_high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 20,
+      "query": "Identify echo chambers in X discussions about any controversial tech topic.",
+      "category": "x_network_analysis",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "sentiment_analysis", "thread_analyzer"]
+    },
+    {
+      "id": 21,
+      "query": "What are the common themes across highly-cited papers in multiple fields?",
+      "category": "cross_field_analysis",
+      "complexity": "very_high",
+      "expected_tools": ["paper_search", "citation_tracker", "hybrid_retrieval"]
+    },
+    {
+      "id": 22,
+      "query": "Track how a specific research topic evolved through citation chains over the past decade.",
+      "category": "temporal_citation",
+      "complexity": "very_high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 23,
+      "query": "Compare sentiment about the same technology topic between X users and research paper abstracts.",
+      "category": "cross_domain_sentiment",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "paper_search", "sentiment_analysis", "hybrid_retrieval"]
+    },
+    {
+      "id": 24,
+      "query": "What research gaps exist in a specific field based on paper keywords and methodology analysis?",
+      "category": "gap_analysis",
+      "complexity": "very_high",
+      "expected_tools": ["paper_search", "hybrid_retrieval"]
+    },
+    {
+      "id": 25,
+      "query": "Identify papers that are highly cited but have low discussion on X, or vice versa.",
+      "category": "cross_domain_impact",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "paper_search", "citation_tracker", "hybrid_retrieval"]
+    },
+    {
+      "id": 26,
+      "query": "What are the ethical concerns raised about AI in both academic papers and X discussions?",
+      "category": "ethics_cross_domain",
+      "complexity": "high",
+      "expected_tools": ["x_search", "paper_search", "sentiment_analysis", "hybrid_retrieval"]
+    },
+    {
+      "id": 27,
+      "query": "Find research collaborations by analyzing common co-citations in papers.",
+      "category": "collaboration_analysis",
+      "complexity": "very_high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 28,
+      "query": "What topics generate the most engagement on X but have little academic research?",
+      "category": "topic_gap_analysis",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "paper_search", "hybrid_retrieval"]
+    },
+    {
+      "id": 29,
+      "query": "Analyze the relationship between paper publication venues and their citation impact.",
+      "category": "venue_analysis",
+      "complexity": "medium",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 30,
+      "query": "What emerging research directions can be predicted from recent paper keywords and X discussions?",
+      "category": "trend_prediction",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "paper_search", "hybrid_retrieval"]
+    },
+    {
+      "id": 31,
+      "query": "Compare the technical depth between X discussions and research papers on the same topic.",
+      "category": "depth_comparison",
+      "complexity": "high",
+      "expected_tools": ["x_search", "paper_search", "hybrid_retrieval"]
+    },
+    {
+      "id": 32,
+      "query": "Identify papers with high citation velocity (rapid recent citation growth).",
+      "category": "citation_velocity",
+      "complexity": "medium",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 33,
+      "query": "What are the most polarizing topics on X related to technology research?",
+      "category": "polarization_analysis",
+      "complexity": "high",
+      "expected_tools": ["x_search", "sentiment_analysis"]
+    },
+    {
+      "id": 34,
+      "query": "Find papers that are foundational (cited by many others) versus papers that synthesize (cite many others).",
+      "category": "citation_pattern",
+      "complexity": "very_high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 35,
+      "query": "What research claims from papers are being misrepresented or oversimplified on X?",
+      "category": "misinformation_detection",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "paper_search", "hybrid_retrieval", "sentiment_analysis"]
+    },
+    {
+      "id": 36,
+      "query": "Analyze the diversity of perspectives in threads about a controversial research topic.",
+      "category": "x_diversity_analysis",
+      "complexity": "high",
+      "expected_tools": ["x_search", "sentiment_analysis", "thread_analyzer"]
+    },
+    {
+      "id": 37,
+      "query": "What are the most commonly cited papers across different research fields?",
+      "category": "cross_field_citation",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 38,
+      "query": "Identify research topics with declining interest based on publication and citation trends.",
+      "category": "decline_analysis",
+      "complexity": "high",
+      "expected_tools": ["paper_search", "citation_tracker"]
+    },
+    {
+      "id": 39,
+      "query": "What verified X users are discussing academic research? What's their stance?",
+      "category": "x_verified_analysis",
+      "complexity": "medium",
+      "expected_tools": ["x_search", "sentiment_analysis"]
+    },
+    {
+      "id": 40,
+      "query": "Build a comprehensive knowledge graph connecting X discussions to research papers through topics and entities.",
+      "category": "knowledge_graph",
+      "complexity": "very_high",
+      "expected_tools": ["x_search", "paper_search", "hybrid_retrieval", "citation_tracker"]
+    }
+  ]
+}
+
