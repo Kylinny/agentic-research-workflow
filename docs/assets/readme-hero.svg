@@ -22,7 +22,7 @@
   <circle cx="171" cy="621" r="206" fill="#22C55E" fill-opacity="0.10"/>
 
   <g filter="url(#shadow)">
-    <rect x="160" y="128" width="960" height="464" rx="28" fill="url(#panel)" stroke="rgba(255,255,255,0.18)"/>
+    <rect x="160" y="128" width="960" height="464" rx="28" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity="0.18"/>
   </g>
 
   <text x="212" y="206" fill="#E5F0FF" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">AGENTIC RESEARCH WORKFLOW</text>
@@ -53,6 +53,6 @@
   <text x="920" y="522" fill="#FDE68A" font-family="Segoe UI, Arial, sans-serif" font-size="18">Graceful fallback</text>
 
   <text x="212" y="478" fill="#9FB7D9" font-family="Segoe UI, Arial, sans-serif" font-size="20">Built for local validation, demo reliability, and AI backend storytelling.</text>
-  <text x="212" y="520" fill="#F8FAFC" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">$ python main.py --offline --query "Compare X discourse and research trends"</text>
+  <text x="212" y="520" fill="#F8FAFC" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">$ python main.py --offline --query &quot;Compare X discourse and research trends&quot;</text>
   <text x="212" y="554" fill="#A7F3D0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">SUCCESS  iterations=1  tasks=2/2  mode=offline</text>
 </svg>

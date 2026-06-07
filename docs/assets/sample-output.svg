@@ -6,7 +6,7 @@
   <circle cx="190" cy="115" r="10" fill="#34D399"/>
   <text x="230" y="123" fill="#94A3B8" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">offline-demo.txt</text>
 
-  <text x="116" y="180" fill="#22C55E" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="22">$ python main.py --offline --query "How does X discourse on biotechnology compare to academic research?"</text>
+  <text x="116" y="180" fill="#22C55E" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="22">$ python main.py --offline --query &quot;How does X discourse on biotechnology compare to academic research?&quot;</text>
   <text x="116" y="228" fill="#E2E8F0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">Initializing Research Agent...</text>
   <text x="116" y="262" fill="#A7F3D0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">✓ All tools initialized successfully</text>
   <text x="116" y="296" fill="#A7F3D0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">✓ Research Agent initialized with Grok 4 Latest</text>
