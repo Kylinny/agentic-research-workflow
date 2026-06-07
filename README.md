@@ -262,6 +262,3 @@ See [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common issues and solution
 
 MIT License - See LICENSE file for details.
 
-## Promo Code
-
-Use promo code `grok_eng_9a9e9f2a` on console.x.ai for $20 in free credits.
