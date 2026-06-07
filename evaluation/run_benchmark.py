@@ -12,11 +12,16 @@ from tqdm import tqdm
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from grok import GrokClient, GrokModel
+from grok import GrokModel, OfflineGrokClient
 from agent import ResearchAgent
-from dotenv import load_dotenv
 
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    load_dotenv = None
+
+if load_dotenv:
+    load_dotenv()
 
 def load_queries(query_file: str = "evaluation/queries.json") -> List[Dict]:
     """Load test queries"""
@@ -28,7 +33,8 @@ def run_benchmark(
     queries: List[Dict],
     model: GrokModel = GrokModel.GROK_4_LATEST,
     max_queries: int = None,
-    output_dir: str = "results/benchmark"
+    output_dir: str = "results/benchmark",
+    offline: bool = False
 ):
     """
     Run benchmark on queries
@@ -43,7 +49,10 @@ def run_benchmark(
     
     # Initialize agent
     print(f"Initializing agent with {model.display_name}...")
-    agent = ResearchAgent(model=model)
+    agent = ResearchAgent(
+        grok_client=OfflineGrokClient() if offline else None,
+        model=model
+    )
     
     # Select queries
     if max_queries:
@@ -189,6 +198,11 @@ def main():
         default="results/benchmark",
         help="Output directory"
     )
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="Run benchmark with the deterministic offline client"
+    )
     
     args = parser.parse_args()
     
@@ -201,9 +215,9 @@ def main():
         queries,
         model=model,
         max_queries=args.max_queries,
-        output_dir=args.output_dir
+        output_dir=args.output_dir,
+        offline=args.offline
     )
 
 if __name__ == "__main__":
     main()
-

@@ -11,6 +11,7 @@ dist/
 *.egg-info/
 .env
 .venv
+.venv310
 *.log
 .DS_Store
 .idea/
@@ -20,4 +21,3 @@ dist/
 data/cache/
 results/
 *.db
-

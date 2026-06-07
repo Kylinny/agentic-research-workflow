@@ -4,19 +4,64 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://www.python.org/)
 [![Grok](https://img.shields.io/badge/Grok-4--latest-purple)](https://x.ai/)
 
-A sophisticated autonomous multi-step agentic workflow system using Grok as the central reasoner for complex research on simulated X data and research papers.
+![Agentic Research Workflow Hero](docs/assets/readme-hero.svg)
+
+A reproducible AI agent workflow for research-style queries across X-style discourse and research-paper datasets.
+
+This project is designed and packaged like an **AI backend / agent systems** project, not just a chat demo. It focuses on:
+- multi-step planning, execution, analysis, and synthesis
+- tool orchestration across heterogeneous local datasets
+- deterministic offline demos without live model credentials
+- graceful degradation when semantic retrieval backends are unavailable
+- local benchmark and regression coverage for repeatable iteration
 
 **🔗 GitHub Repository**: https://github.com/Kylinny/agentic-research-workflow
 
+## Why This Project
+
+Many agent demos look impressive but are hard to reproduce locally because they depend on API keys, unstable model behavior, or brittle retrieval pipelines. This repository turns that problem into an engineering exercise: build an agent workflow that still runs, benchmarks, and demos cleanly even when parts of the runtime are unavailable.
+
+## Showcase
+
+### Sample Output Screenshot
+
+![Offline Sample Output](docs/assets/sample-output.svg)
+
+Open the full sample here: [examples/sample_output.md](examples/sample_output.md)
+
+## Quick Demo
+
+```bash
+# 1. Create a Python 3.10+ environment
+python3.10 -m venv .venv310
+source .venv310/bin/activate
+pip install -r requirements.txt
+
+# 2. Run the offline workflow
+python main.py --offline --query "How does X discourse on biotechnology compare to academic research?"
+
+# 3. Run the offline regression suite
+python -m unittest discover -s tests
+
+# 4. Run a small offline benchmark
+python evaluation/run_benchmark.py --offline --max-queries 2
+```
+
 ## Overview
 
-This system implements an advanced agentic workflow that:
-- **Plans and decomposes** complex research queries into manageable sub-tasks
-- **Selects and executes** appropriate tools based on task requirements
-- **Analyzes and refines** results through iterative loops
-- **Handles ambiguity** with Grok-driven replanning
-- **Manages context** across multiple reasoning steps
-- **Synthesizes insights** from diverse data sources
+The workflow supports:
+- **Planning**: break complex research questions into executable tasks
+- **Execution**: run retrieval and analysis tools with dependency-aware orchestration
+- **Analysis**: score intermediate results for quality and completeness
+- **Synthesis**: generate a final structured answer from tool outputs
+- **Offline reproducibility**: run demos and benchmarks without a live xAI key
+- **Retrieval fallback**: degrade from semantic retrieval to keyword-only mode when needed
+
+## What Makes It Useful
+
+- **Good for demos**: `--offline` mode makes the workflow easy to show without external setup
+- **Good for iteration**: regression tests and benchmark scripts catch breakage quickly
+- **Good for storytelling**: the architecture highlights agent control flow, retrieval design, and runtime resilience
 
 ## Features
 
@@ -109,6 +154,24 @@ python evaluation/run_benchmark.py
 python evaluation/compare_models.py
 ```
 
+### Offline Demo Mode
+
+```bash
+# Run the full workflow without an xAI API key
+python main.py --offline --query "Compare public discourse and research trends in AI safety"
+
+# Run a small offline benchmark
+python evaluation/run_benchmark.py --offline --max-queries 3
+```
+
+Offline mode uses a deterministic heuristic client so you can demo planning, tool execution, and synthesis locally before wiring in a live model.
+
+### Run Regression Tests
+
+```bash
+python -m unittest discover -s tests
+```
+
 ### Example Queries
 
 ```bash
@@ -124,49 +187,24 @@ python main.py --query "How does public discourse on X about quantum computing a
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────┐
-│              User Query                         │
-└────────────────┬────────────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────────────┐
-│         Grok Planning Agent                     │
-│  • Query decomposition                          │
-│  • Sub-task generation                          │
-│  • Tool selection                               │
-└────────────────┬────────────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────────────┐
-│         Tool Execution Layer                    │
-│  • X Data Search    • Paper Search              │
-│  • Sentiment Analysis • Citation Tracker        │
-│  • Thread Analyzer  • Hybrid Retrieval          │
-└────────────────┬────────────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────────────┐
-│        Grok Analysis & Refinement               │
-│  • Result synthesis                             │
-│  • Ambiguity detection                          │
-│  • Replanning if needed                         │
-└────────────────┬────────────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────────────┐
-│         Context Manager                         │
-│  • Multi-step memory                            │
-│  • Relevant history retention                   │
-└────────────────┬────────────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────────────┐
-│         Final Synthesis                         │
-│  • Comprehensive summary                        │
-│  • Source citations                             │
-│  • Confidence scores                            │
-└─────────────────────────────────────────────────┘
+![Architecture Overview](docs/assets/architecture-overview.svg)
+
+```mermaid
+flowchart TD
+    A["User Query"] --> B["ResearchAgent Core"]
+    B --> C["Planner"]
+    B --> D["Executor"]
+    B --> E["Analyzer"]
+    B --> F["Context Manager"]
+    D --> G["Tool Layer"]
+    G --> H["X Search"]
+    G --> I["Paper Search"]
+    G --> J["Hybrid Retrieval"]
+    G --> K["Sentiment Analysis"]
+    G --> L["Citation Tracker"]
+    B --> M["Live Grok Client or Offline Client"]
+    J --> N["Semantic Retrieval if enabled"]
+    J --> O["Keyword-only fallback"]
 ```
 
 ## Project Structure
@@ -235,4 +273,3 @@ MIT License - See LICENSE file for details.
 ## Promo Code
 
 Use promo code `grok_eng_9a9e9f2a` on console.x.ai for $20 in free credits.
-

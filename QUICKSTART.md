@@ -44,11 +44,23 @@ python3 test_imports.py
 # ✓ data files exist
 ```
 
+```bash
+# Run the offline regression suite
+python -m unittest discover -s tests
+```
+
 ### Step 4: Run Your First Query! (1 minute)
 
 ```bash
 # Try a simple query
 python main.py --query "What are users saying about AI safety on X?"
+```
+
+### No API Key Yet? Use Offline Mode
+
+```bash
+# Demo the full workflow locally with deterministic planning/synthesis
+python main.py --offline --query "How does X discourse on biotechnology compare to academic research?"
 ```
 
 ## 🎯 Next Steps
@@ -62,6 +74,9 @@ python main.py --interactive
 ```bash
 # Test on 5 queries
 python evaluation/run_benchmark.py --max-queries 5
+
+# Or validate the evaluation loop offline
+python evaluation/run_benchmark.py --offline --max-queries 3
 ```
 
 ### Compare Models
@@ -124,4 +139,3 @@ If you encounter issues:
 ---
 
 **Ready to research!** 🎉
-

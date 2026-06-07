@@ -1,5 +1,4 @@
-from .client import GrokClient
+from .client import GrokClient, OfflineGrokClient
 from .models import GrokModel
 
-__all__ = ['GrokClient', 'GrokModel']
-
+__all__ = ['GrokClient', 'OfflineGrokClient', 'GrokModel']

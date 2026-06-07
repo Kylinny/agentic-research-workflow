@@ -1,0 +1,58 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1120" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="184" y1="146" x2="1076" y2="574" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#0B1220" stop-opacity="0.84"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="160" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="shadow" x="130" y="100" width="1020" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" rx="32" fill="url(#bg)"/>
+  <circle cx="1064" cy="132" r="184" fill="#38BDF8" fill-opacity="0.12"/>
+  <circle cx="171" cy="621" r="206" fill="#22C55E" fill-opacity="0.10"/>
+
+  <g filter="url(#shadow)">
+    <rect x="160" y="128" width="960" height="464" rx="28" fill="url(#panel)" stroke="rgba(255,255,255,0.18)"/>
+  </g>
+
+  <text x="212" y="206" fill="#E5F0FF" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">AGENTIC RESEARCH WORKFLOW</text>
+  <text x="212" y="276" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700">Reproducible multi-step agent system</text>
+  <text x="212" y="330" fill="#D6E4FF" font-family="Segoe UI, Arial, sans-serif" font-size="24">Planning, tool orchestration, offline demos, benchmarkable execution.</text>
+
+  <rect x="212" y="372" width="176" height="44" rx="22" fill="url(#chip)"/>
+  <text x="244" y="401" fill="#04130C" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Offline Mode</text>
+
+  <rect x="404" y="372" width="214" height="44" rx="22" fill="#13223D" stroke="#60A5FA"/>
+  <text x="434" y="401" fill="#DCEAFE" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Regression Tested</text>
+
+  <rect x="702" y="198" width="362" height="166" rx="24" fill="#0B1324" stroke="#334155"/>
+  <text x="734" y="242" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Core Loop</text>
+  <text x="734" y="282" fill="#C7D2FE" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">plan -> retrieve -> analyze</text>
+  <text x="734" y="318" fill="#C7D2FE" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">replan if needed -> synthesize</text>
+
+  <rect x="702" y="390" width="172" height="144" rx="24" fill="#0B1324" stroke="#334155"/>
+  <text x="730" y="432" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Data</text>
+  <text x="730" y="466" fill="#D1FAE5" font-family="Segoe UI, Arial, sans-serif" font-size="18">X-style posts</text>
+  <text x="730" y="494" fill="#DBEAFE" font-family="Segoe UI, Arial, sans-serif" font-size="18">Research papers</text>
+  <text x="730" y="522" fill="#E9D5FF" font-family="Segoe UI, Arial, sans-serif" font-size="18">Citation graph</text>
+
+  <rect x="892" y="390" width="172" height="144" rx="24" fill="#0B1324" stroke="#334155"/>
+  <text x="920" y="432" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Runtime</text>
+  <text x="920" y="466" fill="#D1FAE5" font-family="Segoe UI, Arial, sans-serif" font-size="18">Offline client</text>
+  <text x="920" y="494" fill="#DBEAFE" font-family="Segoe UI, Arial, sans-serif" font-size="18">Benchmark mode</text>
+  <text x="920" y="522" fill="#FDE68A" font-family="Segoe UI, Arial, sans-serif" font-size="18">Graceful fallback</text>
+
+  <text x="212" y="478" fill="#9FB7D9" font-family="Segoe UI, Arial, sans-serif" font-size="20">Built for local validation, demo reliability, and AI backend storytelling.</text>
+  <text x="212" y="520" fill="#F8FAFC" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">$ python main.py --offline --query "Compare X discourse and research trends"</text>
+  <text x="212" y="554" fill="#A7F3D0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">SUCCESS  iterations=1  tasks=2/2  mode=offline</text>
+</svg>
