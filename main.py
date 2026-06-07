@@ -5,17 +5,25 @@ import os
 import sys
 import argparse
 import json
-from dotenv import load_dotenv
 from colorama import Fore, Style, init
-from grok import GrokClient, GrokModel
+from grok import GrokModel, OfflineGrokClient
 from agent import ResearchAgent
 
 init(autoreset=True)
 
-def load_environment():
+def load_environment(offline: bool = False):
     """Load environment variables"""
-    load_dotenv()
-    
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        load_dotenv = None
+
+    if load_dotenv:
+        load_dotenv()
+
+    if offline:
+        return
+
     if not os.getenv("XAI_API_KEY"):
         print(f"{Fore.RED}Error: XAI_API_KEY not found in environment")
         print(f"Please set it in .env file or environment variables{Style.RESET_ALL}")
@@ -158,6 +166,12 @@ Examples:
         default="data",
         help="Directory containing data files"
     )
+
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="Run with a deterministic offline client instead of the live xAI API"
+    )
     
     parser.add_argument(
         "--verbose", "-v",
@@ -169,7 +183,7 @@ Examples:
     args = parser.parse_args()
     
     # Load environment
-    load_environment()
+    load_environment(offline=args.offline)
     
     # Validate data directory
     if not os.path.exists(args.data_dir):
@@ -181,6 +195,7 @@ Examples:
         model = GrokModel(args.model)
         print(f"{Fore.CYAN}Initializing Research Agent...{Style.RESET_ALL}")
         agent = ResearchAgent(
+            grok_client=OfflineGrokClient() if args.offline else None,
             model=model,
             max_iterations=args.max_iterations,
             data_dir=args.data_dir
@@ -210,4 +225,3 @@ Examples:
 
 if __name__ == "__main__":
     sys.exit(main())
-

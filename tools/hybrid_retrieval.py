@@ -4,7 +4,6 @@ Hybrid retrieval combining semantic and keyword search
 import json
 import numpy as np
 from typing import List, Dict, Optional
-from sentence_transformers import SentenceTransformer
 import os
 
 class HybridRetrievalTool:
@@ -12,9 +11,30 @@ class HybridRetrievalTool:
     
     def __init__(self, data_dir: str = "data"):
         self.data_dir = data_dir
-        self.encoder = SentenceTransformer('all-MiniLM-L6-v2')
+        self.encoder = None
+        self.semantic_available = False
+        self.semantic_backend_error = None
         self.embeddings_cache = {}
         self.documents = {}
+        self._initialize_encoder()
+
+    def _initialize_encoder(self):
+        """Initialize the embedding model lazily with a keyword-only fallback."""
+        if os.getenv("ENABLE_SEMANTIC_RETRIEVAL", "").lower() not in {"1", "true", "yes"}:
+            self.semantic_backend_error = (
+                "Semantic retrieval disabled. Set ENABLE_SEMANTIC_RETRIEVAL=1 to enable sentence-transformer embeddings."
+            )
+            return
+
+        try:
+            from sentence_transformers import SentenceTransformer
+
+            self.encoder = SentenceTransformer('all-MiniLM-L6-v2')
+            self.semantic_available = True
+        except Exception as e:
+            self.encoder = None
+            self.semantic_available = False
+            self.semantic_backend_error = str(e)
         
     def load_documents(self, doc_type: str) -> List[Dict]:
         """Load documents from JSON file"""
@@ -33,6 +53,9 @@ class HybridRetrievalTool:
     
     def get_embeddings(self, texts: List[str], cache_key: str) -> np.ndarray:
         """Get or compute embeddings for texts"""
+        if not self.semantic_available or self.encoder is None:
+            raise RuntimeError("Semantic retrieval backend is unavailable")
+
         if cache_key in self.embeddings_cache:
             return self.embeddings_cache[cache_key]
         
@@ -100,29 +123,38 @@ class HybridRetrievalTool:
             texts = [d.get("content", "") for d in docs]
         else:  # papers
             texts = [d.get("title", "") + " " + d.get("abstract", "") for d in docs]
-        
-        # Compute query embedding
-        query_embedding = self.encoder.encode([query], convert_to_numpy=True)[0]
-        
-        # Get document embeddings
-        doc_embeddings = self.get_embeddings(texts, f"{doc_type}_embeddings")
-        
+
         # Compute scores
         results = []
-        for idx, (doc, text, doc_emb) in enumerate(zip(docs, texts, doc_embeddings)):
-            sem_score = self.semantic_score(query_embedding, doc_emb)
+        query_embedding = None
+        doc_embeddings = None
+
+        if self.semantic_available and self.encoder is not None:
+            query_embedding = self.encoder.encode([query], convert_to_numpy=True)[0]
+            doc_embeddings = self.get_embeddings(texts, f"{doc_type}_embeddings")
+
+        for idx, (doc, text) in enumerate(zip(docs, texts)):
+            sem_score = 0.0
+            if doc_embeddings is not None and query_embedding is not None:
+                sem_score = self.semantic_score(query_embedding, doc_embeddings[idx])
             kw_score = self.keyword_score(query, text)
-            
-            combined_score = (semantic_weight * sem_score + 
-                            keyword_weight * kw_score)
+
+            if self.semantic_available:
+                combined_score = (semantic_weight * sem_score + keyword_weight * kw_score)
+            else:
+                combined_score = kw_score
             
             result = {
                 **doc,
                 "relevance_score": float(combined_score),
                 "semantic_score": float(sem_score),
                 "keyword_score": float(kw_score),
+                "retrieval_mode": "hybrid" if self.semantic_available else "keyword_only",
                 "matched_text": text[:200] + "..." if len(text) > 200 else text
             }
+
+            if self.semantic_backend_error and not self.semantic_available:
+                result["semantic_backend_error"] = self.semantic_backend_error
             results.append(result)
         
         # Sort by combined score
@@ -189,4 +221,3 @@ class HybridRetrievalTool:
             "total_hops": hops,
             "results_by_hop": results_by_hop
         }
-
