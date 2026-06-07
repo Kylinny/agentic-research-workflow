@@ -4,8 +4,6 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://www.python.org/)
 [![Grok](https://img.shields.io/badge/Grok-4--latest-purple)](https://x.ai/)
 
-![Agentic Research Workflow Hero](docs/assets/readme-hero.svg)
-
 A reproducible AI agent workflow for research-style queries across X-style discourse and research-paper datasets.
 
 This project is designed and packaged like an **AI backend / agent systems** project, not just a chat demo. It focuses on:
@@ -22,10 +20,6 @@ This project is designed and packaged like an **AI backend / agent systems** pro
 Many agent demos look impressive but are hard to reproduce locally because they depend on API keys, unstable model behavior, or brittle retrieval pipelines. This repository turns that problem into an engineering exercise: build an agent workflow that still runs, benchmarks, and demos cleanly even when parts of the runtime are unavailable.
 
 ## Showcase
-
-### Sample Output Screenshot
-
-![Offline Sample Output](docs/assets/sample-output.svg)
 
 Open the full sample here: [examples/sample_output.md](examples/sample_output.md)
 
@@ -186,8 +180,6 @@ python main.py --query "How does public discourse on X about quantum computing a
 ```
 
 ## Architecture
-
-![Architecture Overview](docs/assets/architecture-overview.svg)
 
 ```mermaid
 flowchart TD
